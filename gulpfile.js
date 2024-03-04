@@ -4,21 +4,49 @@ const plumber = require('gulp-plumber');
 const del = require('del');
 const browserSync = require('browser-sync').create();
 
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const mediaquery = require('postcss-combine-media-query');
+const cssnano = require('cssnano');
+const htmlMinify = require('html-minifier'); 
+
 /* Перенос html в папку dist */
 function html() {
+  const options = {
+    removeComments: true,
+    removeRedundantAttributes: true,
+    removeScriptTypeAttributes: true,
+    removeStyleLinkTypeAttributes: true,
+    sortClassName: true,
+    useShortDoctype: true,
+    collapseWhitespace: true,
+    minifyCSS: true,
+    minifyURLs: true,
+    keepClosingSlash: true,
+  };
   return gulp
     .src('./src/**/*.html')
     .pipe(plumber())
+    .on('data', function(file) {
+      const buferFile = Buffer.from(htmlMinify.minify(file.contents.toString(), options))
+      return file.contents = buferFile
+    })
     .pipe(gulp.dest('dist/'))
     .pipe(browserSync.reload({ stream: true }));
 }
 
 /* Склейка css в папку dist */
 function css() {
+  const plugins = [
+    autoprefixer(),
+    mediaquery(),
+    cssnano(),
+  ]
   return gulp
     .src('src/**/*.css')
     .pipe(plumber())
     .pipe(concat('bundle.css'))
+    .pipe(postcss(plugins))
     .pipe(gulp.dest('dist/'))
     .pipe(browserSync.reload({ stream: true }));
 }
