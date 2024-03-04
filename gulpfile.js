@@ -43,10 +43,19 @@ function css() {
     cssnano(),
   ]
   return gulp
-    .src('src/**/*.css')
-    .pipe(plumber())
+    .src('./src/**/*.css')
+    .pipe(plumber({
+      errorHandler: false
+      }))
     .pipe(concat('bundle.css'))
     .pipe(postcss(plugins))
+    .pipe(gulp.dest('dist/'))
+    .pipe(browserSync.reload({ stream: true }));
+}
+
+function scripts() {
+  return gulp
+    .src('src/**/*.js')
     .pipe(gulp.dest('dist/'))
     .pipe(browserSync.reload({ stream: true }));
 }
@@ -73,7 +82,7 @@ function clean() {
 
 function watchFiles() {
   gulp.watch(['src/**/*.html'], html);
-  gulp.watch(['src/blocks/**/*.css'], css);
+  gulp.watch(['src/**/*.css'], css);
   gulp.watch(['src/images/**/*.{jpg,png,svg,gif,ico,webp,avif}'], images);
 }
 
@@ -87,12 +96,13 @@ function serve() {
 
 const build = gulp.series(
   clean,
-  gulp.parallel(html, css, images, fonts)
+  gulp.parallel(html, css, scripts, images, fonts)
 ); /* Сначала при вызове команды gulp build из терминала мы удалим папку dist/, а потом в параллельном режиме выполним задачи сборки HTML, CSS и изображений. */
 const watchapp = gulp.parallel(build, watchFiles, serve);
 
 exports.html = html;
 exports.css = css;
+exports.scripts = scripts;
 exports.images = images;
 exports.fonts = fonts;
 exports.clean = clean;

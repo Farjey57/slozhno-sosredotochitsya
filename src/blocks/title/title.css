@@ -1,0 +1,4 @@
+.title {
+  color: var(--sub-title-color);
+  background-color: var(--accent-color);
+}
