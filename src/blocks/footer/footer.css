@@ -1,0 +1,8 @@
+.footer {
+  min-block-size: 100vh;
+  display: flex;
+}
+
+.footer__logo {
+  margin: auto;
+}

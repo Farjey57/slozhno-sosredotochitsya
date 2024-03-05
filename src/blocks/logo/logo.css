@@ -1,0 +1,7 @@
+.logo {
+  color: var(--logo-color);
+  font-size: 116px;
+  text-shadow: 4px 4px var(--accent-color);
+  font-weight: bold;
+  line-height: 0.825;
+}

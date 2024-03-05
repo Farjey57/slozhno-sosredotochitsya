@@ -1,0 +1,8 @@
+.link {
+  text-shadow: 2px 1px var(--accent-color);
+  text-decoration: none;
+}
+
+.link:hover {
+  border-block-end: 1px solid currentColor;
+}

@@ -1,4 +1,17 @@
 .title {
   color: var(--sub-title-color);
+  font-weight: bold;
   background-color: var(--accent-color);
+}
+
+.title_none-back {
+  background-color: transparent;
+}
+
+.title_pink {
+  color: var(--accent-color);
+}
+
+.title_no-bold {
+  font-weight: normal;
 }

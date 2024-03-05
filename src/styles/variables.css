@@ -6,7 +6,9 @@
 :root {
   --main-text-color: #F1B2CE;
   --main-background-color: #000028;
+  --logo-color: #DB00FF;
   --accent-color: #FF0070;
-  --title-color: var(--main-text-color);
-  --sub-title-color: var(--main-background-color);
+  --title-color: var(--main-background-color);
+
+  --padding-page: 10px;
 }
