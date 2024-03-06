@@ -19,6 +19,7 @@ body {
   max-inline-size: 1440px;
   margin: 0 auto;
   font-family: 'IBM Plex mono', sans-serif;
+  font-size: 18px;
   overflow-x: hidden;
 
   /* Для стики футера */
@@ -31,6 +32,7 @@ body {
 main {
   /* Для стики футера */
   flex-grow: 1;
+  padding: 40px 0;
 }
 
 h1,
