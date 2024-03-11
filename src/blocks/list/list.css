@@ -1,0 +1,16 @@
+.list {
+  margin-block-start: 20px;
+  display: grid;
+  row-gap: 20px;
+}
+
+.list__item {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.list__text {
+  color: var(--main-text-color);
+}
+
