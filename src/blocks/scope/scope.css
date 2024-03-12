@@ -6,7 +6,7 @@
   content: '';
   position: absolute;
   right: 0;
-  top: 10px;
+  top: var(--padding-page);
   width: 25px;
   height: 25px;
   border-inline-end: 1px solid var(--accent-color);
@@ -16,7 +16,7 @@
 .scope::after {
   content: '';
   position: absolute;
-  bottom: 10px;
+  bottom: var(--padding-page);
   left: 0;
   width: 25px;
   height: 25px;

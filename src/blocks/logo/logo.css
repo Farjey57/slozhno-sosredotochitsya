@@ -1,6 +1,6 @@
 .logo {
   color: var(--logo-color);
-  font-size: 116px;
+  font-size: clamp(7.25rem, 7.011rem + 1.018vw, 7.5rem);
   text-shadow: 4px 4px var(--accent-color);
   font-weight: bold;
   line-height: 0.825;
