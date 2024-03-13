@@ -1,0 +1,74 @@
+/*
+  Специально для светлой темы при наличии класса.
+  Здесь окажутся стили, которые нужно переопределить принудительно,
+  переключая тему
+*/
+
+.page.theme_light {
+  /* сохраните этот селектор в приведённом виде.
+    Так стили написанные ниже будут иметь больший вес,
+    чем стили в медиазапросе предпочтений пользователя
+  */
+
+  --main-text-color: #353430;
+  --main-background-color: #FFF1F7;
+  --logo-color: #FFC2E6;
+  --accent-color: #FF8DCB;
+  --hover-color: rgba(50, 49, 45, 0.4);
+  --bg-image: url(../images/cover-image-light.png);
+  --title-color: var(--main-text-color);
+}
+
+.theme_light .header__theme-menu-button {
+  --accent-color: #353430;
+}
+
+.theme_light .title {
+  color: var(--title-color);
+}
+
+.theme_light .scope::before,
+.theme_light .scope::after {
+  --accent-color: #353430;
+}
+
+.theme_light .logo {
+  --accent-color: #FF0070;
+}
+
+.theme_light .header__decor {
+  display: none;
+}
+
+@media (prefers-color-scheme: light) {
+  .page.theme_light {
+    --main-text-color: #353430;
+    --main-background-color: #FFF1F7;
+    --logo-color: #FFC2E6;
+    --accent-color: #FF8DCB;
+    --hover-color: rgba(50, 49, 45, 0.4);
+    --bg-image: url(../images/cover-image-light.png);
+    --title-color: var(--main-text-color);
+  }
+  
+  .theme_light .header__theme-menu-button {
+    --accent-color: #353430;
+  }
+  
+  .theme_light .title_pink {
+    --accent-color: #353430;
+  }
+  
+  .theme_light .scope::before,
+  .theme_light .scope::after {
+    --accent-color: #353430;
+  }
+  
+  .theme_light .logo {
+    --accent-color: #FF0070;
+  }
+  
+  .theme_light .header__decor {
+    display: none;
+  }
+}
