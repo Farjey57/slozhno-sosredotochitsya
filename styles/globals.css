@@ -34,11 +34,10 @@ main {
   /* Для стики футера */
   flex-grow: 1;
 
-
-  padding-block: clamp(2.5rem, 1.307rem + 5.089vw, 3.75rem);
   display: flex;
   flex-direction: column;
   row-gap: clamp(3.125rem, 1.336rem + 7.634vw, 5rem);
+  padding-block: clamp(2.5rem, 1.307rem + 5.089vw, 3.75rem);
 }
 
 h1,
