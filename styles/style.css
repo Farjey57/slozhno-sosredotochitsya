@@ -193,7 +193,7 @@
 }
 
 .advices__gallery {
-  margin-block-start: 50px;
+  margin-block-start: clamp(3.125rem, 1.336rem + 7.634vw, 5rem);
 }
 
 .advices__title {
