@@ -14,7 +14,7 @@
   --main-background-color: #FFF1F7;
   --logo-color: #FFC2E6;
   --accent-color: #FF8DCB;
-  --hover-color: rgba(50, 49, 45, 0.4);
+  --hover-color: rgba(50 49 45 / 0.4);
   --bg-image: url(../images/cover-image-light.png);
   --title-color: var(--main-text-color);
 }
@@ -47,16 +47,16 @@
     --main-background-color: #FFF1F7;
     --logo-color: #FFC2E6;
     --accent-color: #FF8DCB;
-    --hover-color: rgba(50, 49, 45, 0.4);
+    --hover-color: rgba(50 49 45 / 0.4);
     --bg-image: url(../images/cover-image-light.png);
     --title-color: var(--main-text-color);
   }
-  
-  .header__theme-menu-button {
-    --accent-color: #353430;
+
+  .title {
+    color: var(--title-color);
   }
-  
-  .title_pink {
+
+  .header__theme-menu-button {
     --accent-color: #353430;
   }
   

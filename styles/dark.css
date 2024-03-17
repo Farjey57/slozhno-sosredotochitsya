@@ -14,9 +14,17 @@
   --main-background-color: #000028;
   --logo-color: #DB00FF;
   --accent-color: #FF0070;
-  --hover-color: rgba(255, 0, 112, 0.4);
+  --hover-color: rgba(255 0 112 / 0.4);
   --bg-image: url(../images/cover-image-dark.png);
   --title-color: var(--main-background-color);
+}
+
+.theme_dark .title {
+  color: var(--accent-color);
+}
+
+.theme_dark .title_decor {
+  color: var(--main-background-color);
 }
 
 .theme_dark .header__theme-menu-button {

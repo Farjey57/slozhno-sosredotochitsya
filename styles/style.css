@@ -10,7 +10,7 @@
 }
 
 .container {
-  padding-inline: var(--padding-page);
+  padding: var(--padding-page);
 }
 
 .title {
@@ -116,6 +116,7 @@
 .header__theme-menu-list {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -137,17 +138,26 @@
   cursor: pointer;
 }
 
-.header__theme-menu-button_active {
+/* из-за :focus-within pointer-events не работает на li. Поэтому конкретно для li в котором активный button сбрасываем pointer-events  */
+
+.header__theme-menu-item .header__theme-menu-button_active {
   outline: 1px solid currentColor;
   pointer-events: none;
 }
 
-.header__theme-menu-button:focus {
+.header__theme-menu-button:focus,
+.header__theme-menu-button:focus-visible {
   outline: none;
 }
 
-.header__theme-menu-button:focus-visible {
+/* Можно было использовать :befor, но решил сделать без лишних элементов. :focus-within передает focus на li и border задается для него, чтобы border не увеличивал высоту button. */
+
+.header__theme-menu-item:focus-within {
   border-block-end: 1px solid currentColor;
+}
+
+.header__theme-menu-item:has(:hover) {
+  border-block-end: none;
 }
 
 .header__decor {
@@ -197,9 +207,10 @@
 }
 
 .gallery__image {
-  width: 100%;
-  height: 100%;
+  inline-size: 100%;
+  block-size: 100%;
   object-fit: cover;
+  object-position: center center;
   display: block;
 }
 
@@ -212,7 +223,7 @@
   margin: auto;
 }
 
-@media (width > 768px) {
+@media (width >= 768px) {
 
   .list {
     margin-block-start: 0;
@@ -277,12 +288,11 @@
   }
 }
 
-@media (width > 1024px) {
+@media (width >= 1024px) {
 
   .header__theme-menu {
     justify-self: center;
     align-self: flex-start;
-    margin-block-start: 20px;
   }
 
   .header__theme-menu-list {
