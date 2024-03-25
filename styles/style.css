@@ -155,7 +155,7 @@
   pointer-events: none;
 }
 
-.header__theme-menu-item:hover:has(.header__theme-menu-button_active)  {
+.header__theme-menu-item:hover:has(.header__theme-menu-button_active) {
   outline: none;
 }
 
