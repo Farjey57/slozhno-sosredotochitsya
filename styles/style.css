@@ -3,7 +3,7 @@
 .page {
   background-color: var(--main-background-color);
   background-image: var(--bg-image);
-  background-size:  auto 100%;
+  background-size:  cover;
   background-position: top center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -36,7 +36,7 @@
 
 .logo {
   color: var(--logo-color);
-  font-size: clamp(7.25rem, 7.011rem + 1.018vw, 7.5rem);
+  font-size: var(--logo-size);
   text-shadow: 4px 4px var(--accent-color);
   font-weight: bold;
   line-height: 0.825;
@@ -86,6 +86,10 @@
   outline: 1px solid currentColor;
 }
 
+.link:hover:focus-visible {
+  outline: none;
+}
+
 .list {
   margin-block-start: 20px;
   display: grid;
@@ -103,7 +107,8 @@
 }
 
 .header {
-  min-block-size: 100vh;
+  block-size: 100vh;
+  min-block-size: 668px;
   display: grid;
   grid-template-rows: 1fr min-content 1fr;
   align-items: center;
@@ -150,6 +155,10 @@
   pointer-events: none;
 }
 
+.header__theme-menu-item:hover:has(.header__theme-menu-button_active)  {
+  outline: none;
+}
+
 .header__theme-menu-button:focus,
 .header__theme-menu-button:focus-visible {
   outline: none;
@@ -158,7 +167,7 @@
 /* Можно было использовать :befor, но решил сделать без лишних элементов. :focus-within передает focus на li и border задается для него, чтобы border не увеличивал высоту button. */
 
 .header__theme-menu-item:focus-within {
-  border-block-end: 1px solid currentColor;
+  border-block-end: 1px solid var(--accent-color);
 }
 
 .header__theme-menu-item:has(:hover) {
@@ -184,7 +193,7 @@
   height: 9px;
   background-color: var(--accent-color);
   margin-inline-start: 10px;
-  border-radius: 9px;
+  border-radius: 50%;
   box-shadow: 0 0 4px 2px var(--accent-color);
 }
 
@@ -220,7 +229,8 @@
 }
 
 .footer {
-  min-block-size: 100vh;
+  block-size: 100vh;
+  min-block-size: 668px;
   display: flex;
 }
 
@@ -230,8 +240,8 @@
 
 @media (width >= 768px) {
 
-  .logo {
-    font-size: clamp(7.5rem, 0.563rem + 14.453vw, 9.813rem);
+  :root {
+    --logo-size: clamp(7.5rem, 0.563rem + 14.453vw, 9.813rem);
   }
 
   .list {
@@ -311,5 +321,97 @@
   .focus__list {
     gap: 20px;
     grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Темная тема */
+
+html:has(.theme_dark) {
+  --main-background-color: #000028;
+}
+
+.theme_dark .title {
+  color: var(--accent-color);
+}
+
+.theme_dark .title_decor {
+  color: var(--main-background-color);
+}
+
+.theme_dark .header__theme-menu-list {
+  --accent-color: #FF0070;
+}
+
+.theme_dark .header__decor {
+  display: flex;
+}
+
+.theme_dark .scope::before,
+.theme_dark .scope::after {
+  --accent-color: #FF0070;
+}
+
+/* Светлая тема */
+
+html:has(.theme_light) {
+  --main-background-color: #FFF1F7;
+}
+
+.theme_light .header__theme-menu-list {
+  --accent-color: #353430;
+}
+
+.theme_light .title {
+  color: var(--title-color);
+}
+
+.theme_light .scope::before,
+.theme_light .scope::after {
+  --accent-color: #353430;
+}
+
+.theme_light .logo {
+  --accent-color: #FF0070;
+}
+
+.theme_light .header__decor {
+  display: none;
+}
+
+@media (prefers-color-scheme: light) {
+
+  .page {
+    --main-text-color: #353430;
+    --main-background-color: #FFF1F7;
+    --logo-color: #FFC2E6;
+    --accent-color: #FF8DCB;
+    --hover-color: rgba(50 49 45 / 0.4);
+    --bg-image: url(../images/cover-image-light.png);
+    --title-color: var(--main-text-color);
+  }
+
+  :root {
+    --main-background-color: #FFF1F7;
+  }
+
+  .title {
+    color: var(--title-color);
+  }
+
+  .header__theme-menu-list {
+    --accent-color: #353430;
+  }
+  
+  .scope::before,
+  .scope::after {
+    --accent-color: #353430;
+  }
+  
+  .logo {
+    --accent-color: #FF0070;
+  }
+  
+  .header__decor {
+    display: none;
   }
 }
