@@ -12,9 +12,20 @@
 
   --main-text-color: #F1B2CE;
   --main-background-color: #000028;
-  --logo-color: #DB00FF;
   --accent-color: #FF0070;
+  --logo-color: #DB00FF;
+
+  --nav-color: var(--accent-color);
+  --logo-accent-color: var(--accent-color);
+  --title-color: var(--accent-color);
+  --subtitle-color: var(--main-background-color);
+  --scope-color: var(--accent-color);
+
   --hover-color: rgba(255 0 112 / 0.4);
   --bg-image: url(../images/cover-image-dark.png);
-  --title-color: var(--main-background-color);
 }
+
+.theme_dark .header__decor {
+  display: flex;
+}
+

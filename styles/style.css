@@ -13,6 +13,11 @@
   padding: var(--padding-page);
 }
 
+.section {
+  display: grid;
+  gap: 20px;
+}
+
 .main {
   row-gap: clamp(3.125rem, 1.336rem + 7.634vw, 5rem);
   padding-block: clamp(2.5rem, 1.307rem + 5.089vw, 3.75rem);
@@ -22,12 +27,12 @@
   font-weight: bold;
   font-size: 18px;
   background-color: transparent;
-  color: var(--accent-color);
+  color: var(--title-color);
 }
 
 .title_decor {
   background-color: var(--accent-color);
-  color: var(--title-color);
+  color: var(--subtitle-color);
 }
 
 .title_no-bold {
@@ -37,7 +42,7 @@
 .logo {
   color: var(--logo-color);
   font-size: var(--logo-size);
-  text-shadow: 4px 4px var(--accent-color);
+  text-shadow: 4px 4px var(--logo-accent-color);
   font-weight: bold;
   line-height: 0.825;
   user-select: none;
@@ -54,8 +59,8 @@
   top: var(--padding-page);
   width: 25px;
   height: 25px;
-  border-inline-end: 1px solid var(--accent-color);
-  border-block-start: 1px solid var(--accent-color);
+  border-inline-end: 1px solid var(--scope-color);
+  border-block-start: 1px solid var(--scope-color);
 }
 
 .scope::after {
@@ -65,8 +70,8 @@
   left: var(--padding-page);
   width: 25px;
   height: 25px;
-  border-block-end: 1px solid var(--accent-color);
-  border-inline-start: 1px solid var(--accent-color);
+  border-block-end: 1px solid var(--scope-color);
+  border-inline-start: 1px solid var(--scope-color);
 }
 
 .link {
@@ -91,7 +96,6 @@
 }
 
 .list {
-  margin-block-start: 20px;
   display: grid;
   row-gap: 20px;
 }
@@ -115,7 +119,8 @@
 }
 
 .header__title {
-  inline-size: clamp(355px, 50vw, calc(50vw - var(--padding-page)));
+  inline-size: 50%;
+  min-inline-size: 355px;
   justify-self: end;
 }
 
@@ -128,14 +133,10 @@
   flex-direction: column;
   flex-wrap: wrap;
   gap: 10px;
-}
-
-.header__theme-menu-item:hover {
-  outline: 1px solid var(--hover-color);
+  color: var(--nav-color);
 }
 
 .header__theme-menu-button {
-  color: var(--accent-color);
   background: transparent;
   text-transform: lowercase;
   border: none;
@@ -148,6 +149,14 @@
   cursor: pointer;
 }
 
+.header__theme-menu-item {
+  position: relative;
+}
+
+.header__theme-menu-item:hover {
+  outline: 1px solid var(--hover-color);
+}
+
 /* из-за :focus-within pointer-events не работает на li. Поэтому конкретно для li в котором активный button сбрасываем pointer-events  */
 
 .header__theme-menu-item .header__theme-menu-button_active {
@@ -155,23 +164,26 @@
   pointer-events: none;
 }
 
-.header__theme-menu-item:hover:has(.header__theme-menu-button_active) {
-  outline: none;
-}
-
 .header__theme-menu-button:focus,
 .header__theme-menu-button:focus-visible {
   outline: none;
 }
 
-/* Можно было использовать :befor, но решил сделать без лишних элементов. :focus-within передает focus на li и border задается для него, чтобы border не увеличивал высоту button. */
-
-.header__theme-menu-item:focus-within {
-  border-block-end: 1px solid var(--accent-color);
+.header__theme-menu-item:focus-within::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
 }
 
-.header__theme-menu-item:has(:hover) {
-  border-block-end: none;
+.header__theme-menu-item:has(:hover)::after {
+  display: none;
+}
+
+.header__theme-menu-item:hover:has(.header__theme-menu-button_active) {
+  outline: none;
 }
 
 .header__decor {
@@ -199,20 +211,22 @@
 
 .advices {
   display: grid;
+  gap: 20px;
+}
+
+.advices__wrapper {
+  display: grid;
+  row-gap: 20px;
 }
 
 .advices__gallery {
-  margin-block-start: clamp(3.125rem, 1.336rem + 7.634vw, 5rem);
-}
-
-.advices__title {
-  margin-block-end: 20px;
+  margin-block-start: clamp(1.875rem, 0.086rem + 7.634vw, 3.75rem);
 }
 
 .gallery {
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: clamp(0.625rem, 0.029rem + 2.545vw, 1.25rem);
 }
 
 .gallery__list {
@@ -244,23 +258,15 @@
     --logo-size: clamp(7.5rem, 0.563rem + 14.453vw, 9.813rem);
   }
 
-  .list {
-    margin-block-start: 0;
-  }
-
   .header__logo {
     margin-inline-start: -20px;
   }
 
   .reasons {
-    display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 20px;
   }
 
   .focus {
-    display: grid;
-    gap: 20px;
     grid-template-columns: 1fr 2fr;
   }
 
@@ -271,17 +277,11 @@
   
   .advices {
     grid-template-columns: 1fr 2fr;
-    column-gap: 20px;
   }
 
   .advices__gallery {
     grid-column-start: 1;
     grid-column-end: -1;
-  }
-
-  .advices__wrapper {
-    display: grid;
-    row-gap: 20px;
   }
 
   .gallery__list {
@@ -324,94 +324,3 @@
   }
 }
 
-/* Темная тема */
-
-html:has(.theme_dark) {
-  --main-background-color: #000028;
-}
-
-.theme_dark .title {
-  color: var(--accent-color);
-}
-
-.theme_dark .title_decor {
-  color: var(--main-background-color);
-}
-
-.theme_dark .header__theme-menu-list {
-  --accent-color: #FF0070;
-}
-
-.theme_dark .header__decor {
-  display: flex;
-}
-
-.theme_dark .scope::before,
-.theme_dark .scope::after {
-  --accent-color: #FF0070;
-}
-
-/* Светлая тема */
-
-html:has(.theme_light) {
-  --main-background-color: #FFF1F7;
-}
-
-.theme_light .header__theme-menu-list {
-  --accent-color: #353430;
-}
-
-.theme_light .title {
-  color: var(--title-color);
-}
-
-.theme_light .scope::before,
-.theme_light .scope::after {
-  --accent-color: #353430;
-}
-
-.theme_light .logo {
-  --accent-color: #FF0070;
-}
-
-.theme_light .header__decor {
-  display: none;
-}
-
-@media (prefers-color-scheme: light) {
-
-  .page {
-    --main-text-color: #353430;
-    --main-background-color: #FFF1F7;
-    --logo-color: #FFC2E6;
-    --accent-color: #FF8DCB;
-    --hover-color: rgba(50 49 45 / 0.4);
-    --bg-image: url(../images/cover-image-light.png);
-    --title-color: var(--main-text-color);
-  }
-
-  :root {
-    --main-background-color: #FFF1F7;
-  }
-
-  .title {
-    color: var(--title-color);
-  }
-
-  .header__theme-menu-list {
-    --accent-color: #353430;
-  }
-  
-  .scope::before,
-  .scope::after {
-    --accent-color: #353430;
-  }
-  
-  .logo {
-    --accent-color: #FF0070;
-  }
-  
-  .header__decor {
-    display: none;
-  }
-}

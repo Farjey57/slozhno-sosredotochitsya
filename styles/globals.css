@@ -7,9 +7,6 @@
 }
 
 html {
-  /* Цвет фона, чтобы холст оставался белым.  Body распространяет background на всю страницу, а не только на элемент*/
-  background-color: var(--main-background-color);
-
   /* Для стики футера */
   height: 100%;
 }

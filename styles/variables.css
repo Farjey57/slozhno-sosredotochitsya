@@ -6,14 +6,19 @@
 :root {
   --main-text-color: #F1B2CE;
   --main-background-color: #000028;
-  --logo-color: #DB00FF;
   --accent-color: #FF0070;
+  --logo-color: #DB00FF;
+
+  --nav-color: var(--accent-color);
+  --logo-accent-color: var(--accent-color);
+  --title-color: var(--accent-color);
+  --subtitle-color: var(--main-background-color);
+  --scope-color: var(--accent-color);
+
   --hover-color: rgba(255 0 112 / 0.4);
   --bg-image: url(../images/cover-image-dark.png);
-  --title-color: var(--main-background-color);
-
+  
   --logo-size: clamp(7.25rem, 7.011rem + 1.018vw, 7.5rem);
-
   /* От 10px до 20px для разрешения от 375px до 768px. */
   --padding-page: clamp(0.625rem, 0.029rem + 2.545vw, 1.25rem);
 }
